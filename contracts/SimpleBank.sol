@@ -70,7 +70,7 @@ contract SimpleBank {
     /// @notice Enroll a customer with the bank
     /// @return The users enrolled status
     // Emit the appropriate event
-    function enroll(address _newCustomer) public onlyOwner isNewCustomer(_newCustomer) returns (bool) {
+    function enroll(address _newCustomer) public returns (bool) {
         enrolled[_newCustomer] = true;
         emit LogEnrolled(_newCustomer);
         return true;

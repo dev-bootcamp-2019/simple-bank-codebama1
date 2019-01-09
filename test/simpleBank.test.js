@@ -19,7 +19,7 @@ contract('SimpleBank', function(accounts) {
   it("mark addresses as enrolled", async () => {
     const bank = await SimpleBank.deployed();
 
-    await bank.enroll({from: alice});
+    await bank.enroll(alice, {from: alice});
 
     const aliceEnrolled = await bank.enrolled(alice, {from: alice});
     assert.equal(aliceEnrolled, true, 'enroll balance is incorrect, check balance method or constructor');
@@ -31,8 +31,8 @@ contract('SimpleBank', function(accounts) {
   it("should deposit correct amount", async () => {
     const bank = await SimpleBank.deployed();
 
-    await bank.enroll({from: alice});
-    await bank.enroll({from: bob});
+    await bank.enroll(alice, {from: alice});
+    await bank.enroll(bob, {from: bob});
 
     var result = await bank.deposit({from: alice, value: deposit});
     const balance = await bank.balance({from: alice});
